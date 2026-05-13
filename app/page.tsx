@@ -1,5 +1,4 @@
 import { getToday, getRecent } from "@/lib/nasa";
-import { ImageError } from "next/dist/server/image-optimizer";
 import Image from 'next/image'
 import Link from "next/link";
 
@@ -36,7 +35,7 @@ export default async function HomePage() {
 
         <p className="text-white/70 leading-relaxed max-w-3x1">{today.explanation.slice(0, 300)}...</p>
         <Link
-        href={'/apod/${today.date}'}
+        href={`/apod/${today.date}`}
         className="inline-block mt-4 px-5 py-2 bprder-white/20 rounded-full text-sm hover:bg-white hover:text-black transition-all">
         Read more 
         </Link>
@@ -49,7 +48,7 @@ export default async function HomePage() {
           {recent.map((apod) => {
             const thumb = apod.media_type === 'image' ? apod.url : (apod.thumbnail_url ?? null)
             return (
-              <Link key={apod.date} href={'/apod/${apod.date}'} className="group block">
+              <Link key={apod.date} href={`/apod/${apod.date}`} className="group block">
                 <div className="relatives aspect-video rounded-lg overflow-hidden bg-white/5 mb-3">
                 {thumb ? (
                   <Image 

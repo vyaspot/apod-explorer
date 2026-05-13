@@ -13,7 +13,7 @@ children,
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="eng">
       <body>
         <nav className="flex items-center justify-between px-6 border-b border-white/10 bg-black/40 backdrop-blur sticky top-0 z-50">
         <Link href="/" className="text-white font-bold text-lg tracking-widest uppercase">
