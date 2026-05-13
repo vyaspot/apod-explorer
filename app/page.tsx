@@ -18,7 +18,7 @@ export default async function HomePage() {
 
         {heroImage ? (
           <div className="relative w-full aspect-video rounded-x1 overflow-hidden mb-6">
-            <image
+            <Image
               src={heroImage}
               alt={today.title}
               fill

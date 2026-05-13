@@ -1,5 +1,5 @@
-const API_KEY = process.env.NASA_API_KEY 
-const BASE_URL = 'https://api.nasa.gov/planetary/apod'
+const API_KEY = process.env.NASA_API_KEY;
+const BASE_URL = "https://api.nasa.gov/planetary/apod";
 
 export type APOD = {
     date: string,
@@ -14,17 +14,18 @@ export type APOD = {
 }
 
 export async function getToday(): Promise<APOD> {
-    const res = await fetch('${Base_URL>api_key=${API_KEY', {
+    const res = await fetch(`${BASE_URL}?api_key=${API_KEY}`, {
+        next: { revalidate: 3600 }
     })
     if (!res.ok) throw new Error('Failed to fetch today\'s APOD')
         return res.json()
 }
 
 export async function getAPOD(date: string): Promise<APOD> {
-    const res =await fetch('${BASE_URL)?api_key=${API_KEY}&date=${date}' , {
+    const res =await fetch(`${BASE_URL}?api_key=${API_KEY}&date=${date}` , {
         next: {revalidate: 86400 }
     })
-    if (!res.ok) throw new Error('Failed to fetch APOD for ${date}')
+    if (!res.ok) throw new Error(`Failed to fetch APOD for ${date}`)
         return res.json()
 }
 
@@ -37,7 +38,7 @@ export async function getRecent(count: number = 9): Promise<APOD[]>{
     const endStr= end.toISOString().split('T')[0]
 
     const res = await fetch(
-        '${BASE_URL}?api_Key=${API_KEY}&start_date=${startStr}&end_date=$[endStr}',
+        `${BASE_URL}?api_key=${API_KEY}&start_date=${startStr}&end_date=${endStr}`,
         { next : { revalidate: 3600 } }
     )
     
