@@ -49,7 +49,7 @@ export default async function HomePage() {
             const thumb = apod.media_type === 'image' ? apod.url : (apod.thumbnail_url ?? null)
             return (
               <Link key={apod.date} href={`/apod/${apod.date}`} className="group block">
-                <div className="relatives aspect-video rounded-lg overflow-hidden bg-white/5 mb-3">
+                <div className="relative aspect-video rounded-lg overflow-hidden bg-white/5 mb-3">
                 {thumb ? (
                   <Image 
                   src={thumb}
@@ -63,7 +63,7 @@ export default async function HomePage() {
                 )}
                 </div>
                 <p className="text-white/40 text-xs mb-1">{apod.date}</p>
-                <p className="text-sm font-medium group-hover:text-white/80 trasnsition-colors">{apod.title}</p>
+                <p className="text-sm font-medium group-hover:text-white/80 transition-colors">{apod.title}</p>
                 </Link>
             )
           })}
