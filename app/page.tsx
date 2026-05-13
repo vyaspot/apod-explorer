@@ -8,12 +8,12 @@ export default async function HomePage() {
   const heroImage = today.media_type === 'image' ? today.url : (today.thumbnail_url)
   
   return (
-    <div className="max-w-6x1 mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-10">
 
       {/* Hero - today's APOD*/}
       <section className="mb-16">
         <p className="text-white/40 text-sm uppercase tracking-widest mb-2">Today</p>
-        <h1 className="text-4x1 font-bold mb-6">{today.title}</h1>
+        <h1 className="text-4xl font-bold mb-6">{today.title}</h1>
 
         {heroImage ? (
           <div className="relative w-full aspect-video rounded-x1 overflow-hidden mb-6">
@@ -28,23 +28,23 @@ export default async function HomePage() {
           </div>
 
         ) : (
-          <div className="w-full aspect-video bg-white/5 rounded-x1 flex items-center justify-center mb-6">
+          <div className="w-full aspect-video bg-white/5 rounded-xl flex items-center justify-center mb-6">
             <p className="text-white/30">Video - no preview available</p>
           </div>
         )}
 
-        <p className="text-white/70 leading-relaxed max-w-3x1">{today.explanation.slice(0, 300)}...</p>
+        <p className="text-white/70 leading-relaxed max-w-3xl">{today.explanation.slice(0, 300)}...</p>
         <Link
         href={`/apod/${today.date}`}
-        className="inline-block mt-4 px-5 py-2 bprder-white/20 rounded-full text-sm hover:bg-white hover:text-black transition-all">
-        Read more 
+        className="inline-block mt-4 px-5 py-2 border-white/20 rounded-full text-sm hover:bg-white hover:text-black transition-all">
+        Read more
         </Link>
       </section>
 
       {/* Recent Grid */}
       <section>
-        <h2 className="text-x1 font-semibold mb-6 text-white/80">Recent</h2>
-        <div className="grid grid-cols-1 sm-grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-xl font-semibold mb-6 text-white/80">Recent</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {recent.map((apod) => {
             const thumb = apod.media_type === 'image' ? apod.url : (apod.thumbnail_url ?? null)
             return (
