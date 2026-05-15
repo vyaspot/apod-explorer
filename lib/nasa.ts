@@ -1,3 +1,5 @@
+console.log('API KEY:', process.env.NASA_API_KEY)
+
 const API_KEY = process.env.NASA_API_KEY;
 const BASE_URL = "https://api.nasa.gov/planetary/apod";
 
