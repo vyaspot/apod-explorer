@@ -13,18 +13,19 @@ export default function FavouriteButton({ date, title, url }: Props) {
     const [isFav, setIsFav] = useState(false);
 
     useEffect(() => {
-        const fav= JSON.parse(localStorage.getItem('Favourites') || '[]')
+        const fav= JSON.parse(localStorage.getItem('favourites') || '[]')
         setIsFav(fav.some((f: any) => f.date === date))
     } , [date])
 
     function toogleFavourite() {
-        const favs = JSON.parse(localStorage.getItem('Favourites') || '[]')
+        const favs = JSON.parse(localStorage.getItem('favourites') || '[]')
         if (isFav) {
             const updated = favs.filter((f: any) => f.date !== date)
-            localStorage.setItem('Favourites', JSON.stringify(updated))
+            localStorage.setItem('favourites', JSON.stringify(updated))
             setIsFav(false)
         } else {
             favs.push({ date, title, url })
+            localStorage.setItem('favourites', JSON.stringify(favs))
             setIsFav(true)
         }
         }
@@ -32,7 +33,7 @@ export default function FavouriteButton({ date, title, url }: Props) {
         return (
             <button 
             onClick={toogleFavourite}
-            className={` px-5 py-2 roundedfull text-sm border transition-all ${
+            className={` px-5 py-2 rounded-full text-sm border transition-all ${
                 isFav 
                 ? 'bg-white text-black border-white'
                 : 'border-white/20 text-white hover:bg-white hover:text-black'
