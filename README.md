@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## My Project: APOD Explorer
 
-## Getting Started
+### What I Built
 
-First, run the development server:
+A Next.js application allowing to explore NASA's Astronomy Picture of the Day (APOD).
+Today's image is displayed on the home page, and a grid of images arranged by the date they were taken appears below.
+Each image links to a detailed page explaining the image.
+Favourites can be saved in the Browser with localStorage and can be viewed on the favourites page.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### What I Expected
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Both SvelteKit and file-based routing are great, so I had hoped that it would be familiar, coming from SvelteKit that I'm still using.
+In the frameworks, pages are defined using folders and files. I thought it would be possible to get data fetching,
+The load() functions in +page.server.ts are similar to work in SvelteKit. I also expected
+layouts to function in a similar way to +layout.svelte.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### What Actually Happened
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Routing was not new to me, but data fetching was — when it comes to Next.js, you write
+Remove the load() function and use async directly in the component.
+The biggest surprise was that params in dynamic routes needed to be awaited in
+The problem that I just encountered with Next.js 16 is that my detail page was crashing until I understood exactly what this was.
+It also didn't seem like I'm supposed to have 'use client' at the top of error.tsx.
 
-## Learn More
+### The Hardest Part
 
-To learn more about Next.js, take a look at the following resources:
+The most difficult part was to understand why my detail page would always be "not found" when I activated the class.
+every date. The API key was loading but params.date was returning:
+To fix this, you need to use Next.js 16 or later, which requires params to be awaited before using them.
+its properties. A significant amount of time went into this before I discovered the mistake in the
+terminal logs.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The list of what I would change if I could.
+Before I began working with Next.js 16, I would read through the changelog and get a good understanding of the updates.
+The distinction between server and client components is the first of two distinctions. I also would have set up
+Externally created the .env.local file and restarted dev server prior to writing any API code.
+to prevent misunderstanding of the importance of the fact that the key wasn't loading.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### One Sentence Verdict
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Yes, I'd definitely use Next.js again for a app like this because fetching data directly inside the server components, as opposed to client ones, is much cleaner than I thought, but I would read the changelog first to ensure that there aren't any surprises like the params awaiting issue.
